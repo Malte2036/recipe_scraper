@@ -51,13 +51,13 @@ class Recipe {
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       url: json['url'],
-      keywords: json['keywords'],
+      keywords: List<String>.from(json['keywords']),
       title: json['title'],
       description: json['description'],
-      imageUrls: json['imageUrls'],
+      imageUrls: List<String>.from(json['imageUrls']),
       rating: json['rating'],
-      ingredients: json['ingredients'],
-      instructions: json['instructions'],
+      ingredients: List<String>.from(json['ingredients']),
+      instructions: List<String>.from(json['instructions']),
       calories: json['calories'],
       carbohydrates: json['carbohydrates'],
       protein: json['protein'],
