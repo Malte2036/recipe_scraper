@@ -3,6 +3,5 @@
 /// More dartdocs go here.
 library;
 
-export 'src/recipe_scraper_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/recipe.dart';
+export 'src/recipe_scraper_base.dart' show scrapeRecipe;
