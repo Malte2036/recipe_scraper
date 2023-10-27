@@ -47,4 +47,60 @@ class Recipe {
       required this.prepTime,
       required this.cookTime,
       required this.totalTime});
+
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    return Recipe(
+      url: json['url'],
+      keywords: json['keywords'],
+      title: json['title'],
+      description: json['description'],
+      imageUrls: json['imageUrls'],
+      rating: json['rating'],
+      ingredients: json['ingredients'],
+      instructions: json['instructions'],
+      calories: json['calories'],
+      carbohydrates: json['carbohydrates'],
+      protein: json['protein'],
+      fat: json['fat'],
+      saturatedFat: json['saturatedFat'],
+      unsaturatedFat: json['unsaturatedFat'],
+      sugar: json['sugar'],
+      cholesterol: json['cholesterol'],
+      sodium: json['sodium'],
+      fiber: json['fiber'],
+      servings: json['servings'],
+      servingsType: json['servingsType'],
+      prepTime: json['prepTime'],
+      cookTime: json['cookTime'],
+      totalTime: json['totalTime'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'url': url,
+      'keywords': keywords,
+      'title': title,
+      'description': description,
+      'imageUrls': imageUrls,
+      'rating': rating,
+      'ingredients': ingredients,
+      'instructions': instructions,
+      'calories': calories,
+      'carbohydrates': carbohydrates,
+      'protein': protein,
+      'fat': fat,
+      'saturatedFat': saturatedFat,
+      'unsaturatedFat': unsaturatedFat,
+      'sugar': sugar,
+      'cholesterol': cholesterol,
+      'sodium': sodium,
+      'fiber': fiber,
+      'servings': servings,
+      'servingsType': servingsType,
+      'prepTime': prepTime,
+      'cookTime': cookTime,
+      'totalTime': totalTime,
+    };
+  }
 }

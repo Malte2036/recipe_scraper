@@ -1,16 +1,14 @@
 name: recipe_scraper
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A package to scrape recipes from various websites.
+version: 0.0.1
+repository: https://github.com/Malte2036/recipe_scraper
 
 environment:
   sdk: ^3.1.3
 
-# Add regular dependencies here.
 dependencies:
   html: ^0.15.4
   http: ^1.1.0
-  # path: ^1.8.0
 
 dev_dependencies:
   lints: ^2.0.0
