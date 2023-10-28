@@ -103,4 +103,60 @@ class Recipe {
       'totalTime': totalTime,
     };
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'url': url,
+      'keywords': keywords,
+      'title': title,
+      'description': description,
+      'imageUrls': imageUrls,
+      'rating': rating,
+      'ingredients': ingredients,
+      'instructions': instructions,
+      'calories': calories,
+      'carbohydrates': carbohydrates,
+      'protein': protein,
+      'fat': fat,
+      'saturatedFat': saturatedFat,
+      'unsaturatedFat': unsaturatedFat,
+      'sugar': sugar,
+      'cholesterol': cholesterol,
+      'sodium': sodium,
+      'fiber': fiber,
+      'servings': servings,
+      'servingsType': servingsType,
+      'prepTime': prepTime,
+      'cookTime': cookTime,
+      'totalTime': totalTime,
+    };
+  }
+
+  factory Recipe.fromMap(Map<String, dynamic> data) {
+    return Recipe(
+      url: data['url'],
+      keywords: List<String>.from(data['keywords']),
+      title: data['title'],
+      description: data['description'],
+      imageUrls: List<String>.from(data['imageUrls']),
+      rating: data['rating'],
+      ingredients: List<String>.from(data['ingredients']),
+      instructions: List<String>.from(data['instructions']),
+      calories: data['calories'],
+      carbohydrates: data['carbohydrates'],
+      protein: data['protein'],
+      fat: data['fat'],
+      saturatedFat: data['saturatedFat'],
+      unsaturatedFat: data['unsaturatedFat'],
+      sugar: data['sugar'],
+      cholesterol: data['cholesterol'],
+      sodium: data['sodium'],
+      fiber: data['fiber'],
+      servings: data['servings'],
+      servingsType: data['servingsType'],
+      prepTime: data['prepTime'],
+      cookTime: data['cookTime'],
+      totalTime: data['totalTime'],
+    );
+  }
 }
