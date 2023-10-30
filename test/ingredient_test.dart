@@ -34,4 +34,13 @@ void main() {
       expect(ingredient.unit, isNull);
     });
   });
+  test('Valid ingredient string with name', () {
+    final ingredientString = "Pepper";
+    final ingredient = calculateIngredient(ingredientString);
+
+    expect(ingredient, isNotNull);
+    expect(ingredient.name, "Pepper");
+    expect(ingredient.quantity, 1);
+    expect(ingredient.unit, isNull);
+  });
 }

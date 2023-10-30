@@ -54,8 +54,11 @@ Ingredient calculateIngredient(String ingredientString) {
   final unit =
       RegExp(r'\b' + _unitsPattern + r'\b').stringMatch(ingredientString);
 
-  final name =
-      ingredientParts.sublist(1).join(' ').replaceFirst(unit ?? '', '').trim();
+  final name = ingredientParts
+      .sublist(amount != null ? 1 : 0)
+      .join(' ')
+      .replaceFirst(unit ?? '', '')
+      .trim();
 
   return Ingredient(
     name: name,
