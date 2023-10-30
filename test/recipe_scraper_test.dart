@@ -23,6 +23,8 @@ void main() {
       expect(recipe.ingredients.length, 7);
       expect(recipe.ingredients.first, isNotNull);
 
+      expect(recipe.ingredients[0].quantity, 2);
+
       expect(recipe.instructions.length, 6);
       expect(recipe.instructions.first, isNotNull);
 

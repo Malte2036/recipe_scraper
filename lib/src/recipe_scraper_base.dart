@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
-import 'package:recipe_scraper/src/recipe.dart';
+import 'package:recipe_scraper/recipe_scraper.dart';
+import 'package:recipe_scraper/src/models/recipe.dart';
 
 Future<Recipe?> scrapeRecipe(String url) async {
   final response = await http.get(Uri.parse(url));
@@ -70,7 +71,7 @@ Recipe _parseRecipeData(dynamic jsonData, String url) {
 
   final double? rating = _getRecipeRating(jsonData['aggregateRating']);
 
-  final List<String> ingredients =
+  final List<Ingredient> ingredients =
       _getRecipeIngredients(jsonData['recipeIngredient'] ?? []);
 
   final List<String> instructions =
@@ -201,9 +202,9 @@ double? _getRecipeRating(dynamic data) {
   return double.tryParse(mapData['ratingValue'].toString());
 }
 
-List<String> _getRecipeIngredients(dynamic data) {
+List<Ingredient> _getRecipeIngredients(dynamic data) {
   if (data is String) {
-    return [data];
+    return [Ingredient.fromIngredientString(data)];
   }
 
   if (data is! List<dynamic>) {
@@ -217,10 +218,14 @@ List<String> _getRecipeIngredients(dynamic data) {
   }
 
   if (listData.first is String) {
-    return List<String>.from(listData);
+    return List<String>.from(listData)
+        .map((e) => Ingredient.fromIngredientString(e))
+        .toList();
   }
 
-  return listData.map((e) => e['text'].toString()).toList();
+  return listData
+      .map((e) => Ingredient.fromIngredientString(e["text"]))
+      .toList();
 }
 
 List<String> _getRecipeInstructions(dynamic data) {

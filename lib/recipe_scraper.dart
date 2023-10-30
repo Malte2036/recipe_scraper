@@ -3,5 +3,6 @@
 /// More dartdocs go here.
 library;
 
-export 'src/recipe.dart';
+export 'src/models/recipe.dart';
+export 'src/models/ingredient.dart';
 export 'src/recipe_scraper_base.dart' show scrapeRecipe;
