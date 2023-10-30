@@ -58,7 +58,8 @@ class Recipe {
       'description': description,
       'imageUrls': imageUrls,
       'rating': rating,
-      'ingredients': ingredients,
+      'ingredients':
+          ingredients.map((ingredient) => ingredient.toJson()).toList(),
       'instructions': instructions,
       'calories': calories,
       'carbohydrates': carbohydrates,
@@ -86,7 +87,8 @@ class Recipe {
       description: data['description'],
       imageUrls: List<String>.from(data['imageUrls']),
       rating: data['rating'],
-      ingredients: List<Ingredient>.from(data['ingredients']),
+      ingredients: List<Ingredient>.from(data['ingredients']
+          .map((ingredient) => Ingredient.fromJson(ingredient))),
       instructions: List<String>.from(data['instructions']),
       calories: data['calories'],
       carbohydrates: data['carbohydrates'],

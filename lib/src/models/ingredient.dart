@@ -22,4 +22,12 @@ class Ingredient {
   factory Ingredient.fromIngredientString(String ingredientString) {
     return calculateIngredient(ingredientString);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'quantity': quantity,
+      'unit': unit,
+    };
+  }
 }
