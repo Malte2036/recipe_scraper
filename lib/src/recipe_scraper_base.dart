@@ -107,6 +107,7 @@ Recipe _parseRecipeData(dynamic jsonData, String url) {
   final String? totalTime = jsonData['totalTime'];
 
   final recipe = Recipe(
+    scrapedAt: DateTime.now(),
     url: url,
     keywords: keywords,
     title: title,

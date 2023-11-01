@@ -1,6 +1,8 @@
 import 'package:recipe_scraper/recipe_scraper.dart';
 
 class Recipe {
+  final DateTime scrapedAt;
+
   final String url;
   final List<String> keywords;
   final String title;
@@ -25,33 +27,36 @@ class Recipe {
   final String? cookTime;
   final String? totalTime;
 
-  Recipe(
-      {required this.url,
-      required this.keywords,
-      required this.title,
-      required this.description,
-      required this.imageUrls,
-      required this.rating,
-      required this.ingredients,
-      required this.instructions,
-      required this.calories,
-      required this.carbohydrates,
-      required this.protein,
-      required this.fat,
-      required this.saturatedFat,
-      required this.unsaturatedFat,
-      required this.sugar,
-      required this.cholesterol,
-      required this.sodium,
-      required this.fiber,
-      required this.servings,
-      required this.servingsType,
-      required this.prepTime,
-      required this.cookTime,
-      required this.totalTime});
+  Recipe({
+    required this.scrapedAt,
+    required this.url,
+    required this.keywords,
+    required this.title,
+    required this.description,
+    required this.imageUrls,
+    required this.rating,
+    required this.ingredients,
+    required this.instructions,
+    required this.calories,
+    required this.carbohydrates,
+    required this.protein,
+    required this.fat,
+    required this.saturatedFat,
+    required this.unsaturatedFat,
+    required this.sugar,
+    required this.cholesterol,
+    required this.sodium,
+    required this.fiber,
+    required this.servings,
+    required this.servingsType,
+    required this.prepTime,
+    required this.cookTime,
+    required this.totalTime,
+  });
 
   Map<String, dynamic> toMap() {
     return {
+      'scrapedAt': scrapedAt,
       'url': url,
       'keywords': keywords,
       'title': title,
@@ -81,6 +86,7 @@ class Recipe {
 
   factory Recipe.fromMap(Map<String, dynamic> data) {
     return Recipe(
+      scrapedAt: data['scrapedAt'],
       url: data['url'],
       keywords: List<String>.from(data['keywords']),
       title: data['title'],
