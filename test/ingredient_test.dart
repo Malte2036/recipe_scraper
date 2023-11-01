@@ -86,4 +86,16 @@ void main() {
     expect(ingredient.quantity, 1);
     expect(ingredient.unit, isNull);
   });
+
+  // test ½ Pck. Löffelbiskuits
+  test('Valid ingredient string with quantity and name (½ Pck. Löffelbiskuits)',
+      () {
+    final ingredientString = "½ Pck. Löffelbiskuits";
+    final ingredient = calculateIngredient(ingredientString);
+
+    expect(ingredient, isNotNull);
+    expect(ingredient.name, "Pck. Löffelbiskuits");
+    expect(ingredient.quantity, 0.5);
+    expect(ingredient.unit, isNull);
+  });
 }
