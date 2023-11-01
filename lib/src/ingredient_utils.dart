@@ -12,6 +12,8 @@ const List<String> _units = [
   'lb',
   'kg',
   'g',
+  "cl",
+  "dl",
   'ml',
   'l',
   "EL",
@@ -25,12 +27,16 @@ final String _unitsPattern = r'(?:' + _units.join('|') + ')';
 Ingredient calculateIngredient(String ingredientString) {
   List<String> ingredientParts = ingredientString.split(' ');
 
-  // fix: 100g -> 100 g
-  if (ingredientParts.first.endsWith("g")) {
-    final amount = double.tryParse(ingredientParts.first.replaceFirst("g", ""));
-    if (amount != null) {
-      ingredientParts = [amount.toString(), "g", ...ingredientParts.sublist(1)];
-      ingredientString = ingredientParts.join(" ");
+  // fix for "100g -> 100 g"
+  for (String unit in _units) {
+    if (ingredientParts[0].endsWith(unit)) {
+      final amount = double.tryParse(ingredientParts[0].replaceFirst(unit, ""));
+      if (amount != null) {
+        ingredientParts[0] = amount.toString();
+        ingredientParts.insert(1, unit);
+        ingredientString = ingredientParts.join(" ");
+        break;
+      }
     }
   }
 

@@ -24,6 +24,17 @@ void main() {
       expect(ingredient.unit, "g");
     });
 
+    // Test for "33cl -> 33 cl"
+    test('Valid ingredient string with quantity and unit (33cl)', () {
+      final ingredientString = "33cl Water";
+      final ingredient = calculateIngredient(ingredientString);
+
+      expect(ingredient, isNotNull);
+      expect(ingredient.name, "Water");
+      expect(ingredient.quantity, 33);
+      expect(ingredient.unit, "cl");
+    });
+
     test('Valid ingredient string with quantity and name', () {
       final ingredientString = "5 Eggs";
       final ingredient = calculateIngredient(ingredientString);
