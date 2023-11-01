@@ -45,7 +45,7 @@ void main() {
       expect(ingredient.unit, isNull);
     });
 
-    /*test('Valid ingredient string with quantity and name (1 Rapsöl)', () {
+    test('Valid ingredient string with quantity and name (1 Rapsöl)', () {
       final ingredientString = "1 Rapsöl";
       final ingredient = calculateIngredient(ingredientString);
 
@@ -53,7 +53,7 @@ void main() {
       expect(ingredient.name, "Rapsöl");
       expect(ingredient.quantity, 1);
       expect(ingredient.unit, isNull);
-    });*/
+    });
 
     test('Valid ingredient string with quantity, unit, and name (5 EL Rapsöl)',
         () {

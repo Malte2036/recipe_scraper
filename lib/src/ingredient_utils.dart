@@ -40,26 +40,19 @@ Ingredient calculateIngredient(String ingredientString) {
     }
   }
 
+  // remove all non-numeric characters from the amount string
   final amount = double.tryParse(
-    ingredientParts.first
-        .replaceFirst("½", "0.5")
-        .replaceFirst("1/2", "0.5")
-        .replaceFirst("¼", "0.25")
-        .replaceFirst("1/4", "0.25")
-        .replaceFirst("¾", "0.75")
-        .replaceFirst("3/4", "0.75")
-        .replaceFirst("⅓", "0.33")
-        .replaceFirst("1/3", "0.33")
-        .replaceFirst("⅔", "0.66")
-        .replaceFirst("2/3", "0.66"),
+    RegExp(r'\d+(\.\d*)?').stringMatch(ingredientParts.first) ?? "",
   );
-  final unit =
-      RegExp(r'\b' + _unitsPattern + r'\b').stringMatch(ingredientString);
+
+  // extract the unit name using a named capture group
+  final unit = RegExp(r'\b(?<=\s)(?<unit>' + _unitsPattern + r')(?![^$ _])\b')
+      .stringMatch(ingredientString);
 
   final name = ingredientParts
       .sublist(amount != null ? 1 : 0)
       .join(' ')
-      .replaceFirst(unit ?? '', '')
+      .replaceFirst(unit ?? "", '')
       .trim();
 
   return Ingredient(
