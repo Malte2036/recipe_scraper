@@ -14,12 +14,8 @@ const List<String> _units = [
   'g',
   'ml',
   'l',
-  'hr',
-  'hour',
-  'min',
-  'minute',
-  'sec',
-  'second',
+  "EL",
+  "TL",
 ];
 
 // ignore: prefer_interpolation_to_compose_strings
