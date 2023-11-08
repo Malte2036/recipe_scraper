@@ -1,10 +1,12 @@
 import 'package:recipe_scraper/recipe_scraper.dart';
+import 'package:recipe_scraper/src/models/restricted_diet.dart';
 
 class Recipe {
   final DateTime scrapedAt;
 
   final String url;
   final List<String> keywords;
+  final List<RestrictedDiet>? restrictedDiets;
   final String title;
   final String description;
   final List<String> imageUrls;
@@ -31,6 +33,7 @@ class Recipe {
     required this.scrapedAt,
     required this.url,
     required this.keywords,
+    required this.restrictedDiets,
     required this.title,
     required this.description,
     required this.imageUrls,
@@ -59,6 +62,7 @@ class Recipe {
       'scrapedAt': scrapedAt,
       'url': url,
       'keywords': keywords,
+      'restrictedDiets': restrictedDiets?.map((diet) => diet.name).toList(),
       'title': title,
       'description': description,
       'imageUrls': imageUrls,
@@ -89,6 +93,14 @@ class Recipe {
       scrapedAt: data['scrapedAt'],
       url: data['url'],
       keywords: List<String>.from(data['keywords']),
+      restrictedDiets: data['restrictedDiets'] == null
+          ? null
+          : List<RestrictedDiet>.from(
+              data['restrictedDiets'].map(
+                (diet) => RestrictedDiet.values
+                    .firstWhere((element) => element.name == diet),
+              ),
+            ),
       title: data['title'],
       description: data['description'],
       imageUrls: List<String>.from(data['imageUrls']),
@@ -119,6 +131,7 @@ class Recipe {
       'scrapedAt': scrapedAt,
       'url': url,
       'keywords': keywords,
+      'restrictedDiets': restrictedDiets?.map((diet) => diet.name).toList(),
       'title': title,
       'description': description,
       'imageUrls': imageUrls,

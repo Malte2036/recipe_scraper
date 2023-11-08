@@ -1,3 +1,4 @@
+import 'package:recipe_scraper/src/models/restricted_diet.dart';
 import 'package:recipe_scraper/src/recipe_scraper_base.dart';
 import 'package:test/test.dart';
 
@@ -251,6 +252,14 @@ void main() {
         recipe.description,
         startsWith(
             'Eine zartgrüne Optik, Eiswürfel, der aromatische Duft nach'));
+
+    expect(recipe.restrictedDiets, [
+      RestrictedDiet.glutenFreeDiet,
+      RestrictedDiet.lowFatDiet,
+      RestrictedDiet.lowLactoseDiet,
+      RestrictedDiet.veganDiet,
+      RestrictedDiet.vegetarianDiet
+    ]);
 
     expect(recipe.imageUrls.length, 4);
 

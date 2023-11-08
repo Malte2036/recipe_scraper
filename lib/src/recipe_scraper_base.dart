@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 import 'package:recipe_scraper/recipe_scraper.dart';
-import 'package:recipe_scraper/src/models/recipe.dart';
+import 'package:recipe_scraper/src/models/restricted_diet.dart';
 
 Future<Recipe?> scrapeRecipe(String url) async {
   final response = await http.get(Uri.parse(url));
@@ -66,6 +66,9 @@ Recipe? decodeRecipeData(dynamic jsonData, String url) {
 Recipe _parseRecipeData(dynamic jsonData, String url) {
   final List<String> keywords = _getRecipeKeywords(jsonData['keywords'] ?? []);
 
+  final List<RestrictedDiet> restrictedDiets =
+      _getRecipeRestrictedDiets(jsonData['suitableForDiet'] ?? []);
+
   final String title = jsonData['name'];
   final String description = jsonData['description'];
   final List<String> imageUrls = _getRecipeImageUrls(jsonData['image'] ?? []);
@@ -111,6 +114,7 @@ Recipe _parseRecipeData(dynamic jsonData, String url) {
     scrapedAt: DateTime.now(),
     url: url,
     keywords: keywords,
+    restrictedDiets: restrictedDiets,
     title: title,
     description: description,
     imageUrls: imageUrls,
@@ -156,6 +160,32 @@ List<String> _getRecipeKeywords(dynamic data) {
   }
 
   return List<String>.from(listData);
+}
+
+List<RestrictedDiet> _getRecipeRestrictedDiets(dynamic data) {
+  if (data == null) {
+    return [];
+  }
+
+  if (data is String) {
+    return [restrictedDietFromUrl(data)!];
+  }
+
+  if (data is! List<dynamic>) {
+    throw Exception(
+        'Recipe restricted diets is of invalid type: ${data.runtimeType}');
+  }
+
+  List<dynamic> listData = data;
+  if (listData.isEmpty) {
+    return [];
+  }
+
+  return listData
+      .map((e) => restrictedDietFromUrl(e.toString()))
+      .where((element) => element != null)
+      .map((e) => e!)
+      .toList();
 }
 
 List<String> _getRecipeImageUrls(dynamic data) {
