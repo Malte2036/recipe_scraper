@@ -8,7 +8,8 @@ Future<Recipe?> scrapeRecipe(String url) async {
   final response = await http.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
-    final document = html_parser.parse(response.body);
+    final decodedBody = utf8.decode(response.bodyBytes);
+    final document = html_parser.parse(decodedBody);
 
     // Find the script tag with type application/ld+json
     final scriptTags =
