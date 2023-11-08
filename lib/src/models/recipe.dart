@@ -113,4 +113,34 @@ class Recipe {
       totalTime: data['totalTime'],
     );
   }
+
+  dynamic toJson() {
+    return {
+      'scrapedAt': scrapedAt,
+      'url': url,
+      'keywords': keywords,
+      'title': title,
+      'description': description,
+      'imageUrls': imageUrls,
+      'rating': rating,
+      'ingredients':
+          ingredients.map((ingredient) => ingredient.toJson()).toList(),
+      'instructions': instructions,
+      'calories': calories,
+      'carbohydrates': carbohydrates,
+      'protein': protein,
+      'fat': fat,
+      'saturatedFat': saturatedFat,
+      'unsaturatedFat': unsaturatedFat,
+      'sugar': sugar,
+      'cholesterol': cholesterol,
+      'sodium': sodium,
+      'fiber': fiber,
+      'servings': servings,
+      'servingsType': servingsType,
+      'prepTime': prepTime,
+      'cookTime': cookTime,
+      'totalTime': totalTime,
+    };
+  }
 }
