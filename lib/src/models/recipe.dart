@@ -59,7 +59,7 @@ class Recipe {
 
   Map<String, dynamic> toMap() {
     return {
-      'scrapedAt': scrapedAt,
+      'scrapedAt': scrapedAt.toIso8601String(),
       'url': url,
       'keywords': keywords,
       'restrictedDiets': restrictedDiets?.map((diet) => diet.name).toList(),
@@ -89,6 +89,10 @@ class Recipe {
   }
 
   factory Recipe.fromMap(Map<String, dynamic> data) {
+    if (data['scrapedAt'] is String) {
+      data['scrapedAt'] = DateTime.parse(data['scrapedAt']);
+    }
+
     return Recipe(
       scrapedAt: data['scrapedAt'],
       url: data['url'],
@@ -128,7 +132,7 @@ class Recipe {
 
   dynamic toJson() {
     return {
-      'scrapedAt': scrapedAt,
+      'scrapedAt': scrapedAt.toIso8601String(),
       'url': url,
       'keywords': keywords,
       'restrictedDiets': restrictedDiets?.map((diet) => diet.name).toList(),
