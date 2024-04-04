@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as html_parser;
 import 'package:recipe_scraper/recipe_scraper.dart';
 import 'package:recipe_scraper/src/models/restricted_diet.dart';
+import 'package:recipe_scraper/src/utils.dart';
 
 Future<Recipe?> scrapeRecipe(String url) async {
   final response = await http.get(Uri.parse(url));
@@ -64,14 +65,16 @@ Recipe? decodeRecipeData(dynamic jsonData, String url) {
 }
 
 Recipe _parseRecipeData(dynamic jsonData, String url) {
-  final List<String> keywords = _getRecipeKeywords(jsonData['keywords'] ?? []);
+  final List<String> keywords =
+      _getRecipeKeywords(jsonData['keywords'] ?? []).map(trim).toList();
 
   final List<RestrictedDiet> restrictedDiets =
       _getRecipeRestrictedDiets(jsonData['suitableForDiet'] ?? []);
 
-  final String title = jsonData['name'];
-  final String description = jsonData['description'];
-  final List<String> imageUrls = _getRecipeImageUrls(jsonData['image'] ?? []);
+  final String title = trim(jsonData['name']);
+  final String description = trim(jsonData['description']);
+  final List<String> imageUrls =
+      _getRecipeImageUrls(jsonData['image'] ?? []).map(trim).toList();
 
   final double? rating = _getRecipeRating(jsonData['aggregateRating']);
 
@@ -79,7 +82,10 @@ Recipe _parseRecipeData(dynamic jsonData, String url) {
       _getRecipeIngredients(jsonData['recipeIngredient'] ?? []);
 
   final List<String> instructions =
-      _getRecipeInstructions(jsonData['recipeInstructions'] ?? []);
+      _getRecipeInstructions(jsonData['recipeInstructions'] ?? [])
+          .map(trim)
+          .toList();
+  ;
 
   final Map<String, dynamic>? nutrition = jsonData['nutrition'];
   final double? calories =
