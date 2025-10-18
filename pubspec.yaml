@@ -1,15 +1,22 @@
 name: recipe_scraper
-description: A package to scrape recipes from various websites.
-version: 0.0.1
+description: A Dart package that allows you to scrape recipe data from websites using JSON-LD structured data (schema.org Recipe markup).
+version: 1.0.0
 repository: https://github.com/Malte2036/recipe_scraper
+topics:
+  - recipe
+  - scraper
+  - json-ld
+  - schema
 
 environment:
-  sdk: ^3.1.3
+  sdk: ">=3.1.3 <4.0.0"
 
 dependencies:
   html: ^0.15.4
 
 dev_dependencies:
-  http: ^0.13.6
-  lints: ^2.0.0
+  http: ^1.5.0
+  lints: ^6.0.0
   test: ^1.21.0
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
