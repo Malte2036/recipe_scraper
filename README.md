@@ -1,6 +1,6 @@
 # Recipe Scraper
 
-A Flutter/Dart package that allows you to scrape recipe data from websites using JSON-LD structured data. This package extracts comprehensive recipe information including ingredients, instructions, nutrition facts, and more from recipe websites that implement schema.org Recipe markup.
+A Dart package that allows you to scrape recipe data from websites using JSON-LD structured data. This package can be used in any Dart or Flutter project. It extracts comprehensive recipe information including ingredients, instructions, nutrition facts, and more from recipe websites that implement schema.org Recipe markup.
 
 ## Features
 
@@ -26,7 +26,7 @@ dependencies:
   recipe_scraper: ^1.0.0
 ```
 
-Then, run `flutter pub get` to install the package.
+Then, run `dart pub get` (for Dart projects) or `flutter pub get` (for Flutter projects) to install the package.
 
 ## Usage
 
