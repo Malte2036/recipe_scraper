@@ -1,5 +1,4 @@
 import 'package:recipe_scraper/recipe_scraper.dart';
-import 'package:recipe_scraper/src/models/restricted_diet.dart';
 
 class Recipe {
   final DateTime scrapedAt;

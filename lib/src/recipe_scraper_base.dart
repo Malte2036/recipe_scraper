@@ -85,7 +85,6 @@ Recipe _parseRecipeData(dynamic jsonData, String url) {
       _getRecipeInstructions(jsonData['recipeInstructions'] ?? [])
           .map(trim)
           .toList();
-  ;
 
   final Map<String, dynamic>? nutrition = jsonData['nutrition'];
   final double? calories =
