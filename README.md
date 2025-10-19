@@ -23,7 +23,7 @@ Add the following dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  recipe_scraper: ^1.0.0
+  recipe_scraper: ^1.0.1
 ```
 
 Then, run `dart pub get` (for Dart projects) or `flutter pub get` (for Flutter projects) to install the package.

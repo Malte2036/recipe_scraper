@@ -1,3 +1,7 @@
+## 1.0.1
+
+- fix linter warnings
+
 ## 1.0.0
 
-- Initial version.
+- Release recipe_saver package

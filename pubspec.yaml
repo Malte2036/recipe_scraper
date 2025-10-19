@@ -1,6 +1,6 @@
 name: recipe_scraper
 description: A Dart package that allows you to scrape recipe data from websites using JSON-LD structured data (schema.org Recipe markup).
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/Malte2036/recipe_scraper
 topics:
   - recipe
